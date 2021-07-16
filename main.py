@@ -13,9 +13,17 @@ def encrypt(pure_text, shift_amount):
             new_position -= 26
         encoded += alphabet[new_position]
     print(f"The encoded text is '{encoded}'")
-    
-encrypt(text, shift)
+    return encoded
 
-    ##🐛Bug alert: What happens if you try to encode the word 'civilization'?🐛
+def decrypt(enc_text, shift_amount):
+    decoded = ""
+    for letter in enc_text:
+        index = alphabet.index(letter)
+        new_position = index - shift_amount
+        if new_position < 0:
+            new_position = 26 + new_position
+        decoded += alphabet[new_position]
+    print(f"The decoded text is '{decoded}''")
 
-#TODO-3: Call the encrypt function and pass in the user inputs. You should be able to test the code and encrypt a message. 
+cipher = encrypt(text, shift)
+decipher = decrypt(cipher, shift)
